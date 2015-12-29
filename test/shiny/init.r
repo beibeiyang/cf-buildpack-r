@@ -4,6 +4,7 @@
 #
 
 #remove.packages("codetools")
+update.packages("codetools")
 
 ###########################################################
 # Update this line with the R packages to install:
