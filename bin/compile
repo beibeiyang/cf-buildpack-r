@@ -22,6 +22,14 @@ function indent() {
   esac
 }
 
+function package_download() {
+  url="$1"
+  location="$2"
+
+  mkdir -p $location
+  curl $url --location -s -o - | tar xzf - -C $location
+}
+
 function read_var() {
   echo $(head -n 1 $1)
 }
