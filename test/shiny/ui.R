@@ -1,22 +1,34 @@
 library(shiny)
 
-# Define UI for application that plots random distributions 
-shinyUI(pageWithSidebar(
+# Rely on the 'WorldPhones' dataset in the datasets
+# package (which generally comes preloaded).
+library(datasets)
 
-  # Application title
-  headerPanel("Hello Shiny!"),
-
-  # Sidebar with a slider input for number of observations
-  sidebarPanel(
-    sliderInput("obs", 
-                "Number of observations:", 
-                min = 1,
-                max = 1000, 
-                value = 500)
-  ),
-
-  # Show a plot of the generated distribution
-  mainPanel(
-    plotOutput("distPlot")
+# Define the overall UI
+shinyUI(
+  
+  # Use a fluid Bootstrap layout
+  fluidPage(    
+    
+    # Give the page a title
+    titlePanel("Telephones by region"),
+    
+    # Generate a row with a sidebar
+    sidebarLayout(      
+      
+      # Define the sidebar with one input
+      sidebarPanel(
+        selectInput("region", "Region:", 
+                    choices=colnames(WorldPhones)),
+        hr(),
+        helpText("Data from AT&T (1961) The World's Telephones.")
+      ),
+      
+      # Create a spot for the barplot
+      mainPanel(
+        plotOutput("phonePlot")  
+      )
+      
+    )
   )
-))
+)

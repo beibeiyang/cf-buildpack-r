@@ -1,9 +1,10 @@
 library(shiny)
 
+host <- Sys.getenv('HOST')
 port <- Sys.getenv('PORT')
 
 shiny::runApp(
   appDir = getwd(),
-  host = '0.0.0.0',
+  host = toString(host)
   port = as.numeric(port)
 )
