@@ -1,0 +1,10 @@
+---
+applications:
+- name: rrubyapp
+  memory: 256M
+  instances: 1
+  buildpack: https://github.com/malston/heroku-buildpack-multi.git
+  host: rrubyapp
+  domain: cfapps.io
+  path: .
+

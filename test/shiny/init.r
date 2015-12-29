@@ -3,6 +3,8 @@
 # See http://cran.r-project.org/doc/manuals/R-admin.html#Installing-packages for details
 #
 
+#remove.packages("codetools")
+
 ###########################################################
 # Update this line with the R packages to install:
 
