@@ -109,17 +109,20 @@ echo "JAVA_HOME: $JAVA_HOME" | indent
 export JAVA_CPPFLAGS="-I$JAVA_HOME/include -I$JAVA_HOME/include/linux"
 echo "JAVA_CPPFLAGS: $JAVA_CPPFLAGS" | indent
 
+
+export PATH="$JAVA_HOME/bin:$PATH" 
+
 mkdir -p $JAVA_HOME
 echo "Copying vendored ${JAVA_HOME_TEMP} files into ${JAVA_HOME}" | indent
 cp -R $JAVA_HOME_TEMP/* $JAVA_HOME/
 
-ls -al /usr/bin/java
+ls -al /usr/bin
 
-if [ -f "/usr/bin/java" ]; then
-     echo "Java found on path" | indent
-else
-    ln -fs $JAVA_HOME/bin/java /usr/bin/java
-fi
+#if [ -f "/usr/bin/java" ]; then
+#     echo "Java found on path" | indent
+#else
+#    ln -fs $JAVA_HOME/bin/java /usr/bin/java
+#fi
 
 #####################
 
