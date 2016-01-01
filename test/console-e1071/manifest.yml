@@ -1,0 +1,9 @@
+---
+applications:
+- name: r_test
+  memory: 256M
+  instances: 1
+  host: r_test
+  domain: cfapps.io
+  path: .
+  buildpack: https://github.com/ddollar/heroku-buildpack-multi.git
