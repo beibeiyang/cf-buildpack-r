@@ -95,7 +95,7 @@ JAVA_HOME_TEMP="$VENDOR_DIR/$JDK"
 #: ${JAVA_LIBS=~autodetect~}
 
 echo "Downloading and unpacking $JDK into '$VENDOR_DIR'" | indent
-package_download "${JDK_URL}" "${VENDOR_DIR}"
+package_download "${JDK_URL}" "${VENDOR_DIR}/$JDK"
 #wget "${JDK_URL}" --no-check-certificate
 #mkdir -p $JAVA_HOME_TEMP
 #mv jdk-7u51-linux-x64.tar.gz "${JAVA_HOME_TEMP}"
