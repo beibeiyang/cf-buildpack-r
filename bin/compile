@@ -28,6 +28,9 @@ function package_download() {
 
   mkdir -p $location
   curl $url --location -s -o - | tar xzf - -C $location
+  ####
+  ls -al $location
+  ####
 }
 
 function read_var() {
@@ -108,7 +111,7 @@ echo "JAVA_CPPFLAGS: $JAVA_CPPFLAGS" | indent
 
 mkdir -p $JAVA_HOME
 echo "Copying vendored ${JAVA_HOME_TEMP} files into ${JAVA_HOME}" | indent
-cp -R $JAVA_HOME_TEMP/* $JAVA_HOME
+cp -R $JAVA_HOME_TEMP/* $JAVA_HOME/
 
 if [ -f "/usr/bin/java" ]; then
      echo "Java found on path" | indent
