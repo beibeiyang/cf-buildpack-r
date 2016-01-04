@@ -76,7 +76,8 @@ CRAN_MIRROR="http://cran.rstudio.com"
 #####################
 
 REPOSITORY_ROOT="download.pivotal.io.s3.amazonaws.com"
-JDK_VERSION="1.8.0_65"
+JDK_VERSION="1.8.0_60"
+#JDK_VERSION="1.8.0_65"
 JDK="openjdk-${JDK_VERSION}"
 #JDK="jdk${JDK_VERSION}"
 #PLATFORM="trusty"
@@ -113,7 +114,7 @@ mkdir -p $JAVA_HOME
 echo "Copying vendored ${JAVA_HOME_TEMP} files into ${JAVA_HOME}" | indent
 cp -R $JAVA_HOME_TEMP/* $JAVA_HOME/
 
-ls -al /usr/bin
+#ls -al /usr/bin
 
 #if [ -f "/usr/bin/java" ]; then
 #     echo "Java found on path" | indent
