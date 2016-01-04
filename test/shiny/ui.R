@@ -1,34 +1,15 @@
 library(shiny)
 
-# Rely on the 'WorldPhones' dataset in the datasets
-# package (which generally comes preloaded).
-library(datasets)
-
-# Define the overall UI
-shinyUI(
-  
-  # Use a fluid Bootstrap layout
-  fluidPage(    
-    
-    # Give the page a title
-    titlePanel("Telephones by region"),
-    
-    # Generate a row with a sidebar
-    sidebarLayout(      
-      
-      # Define the sidebar with one input
-      sidebarPanel(
-        selectInput("region", "Region:", 
-                    choices=colnames(WorldPhones)),
-        hr(),
-        helpText("Data from AT&T (1961) The World's Telephones.")
-      ),
-      
-      # Create a spot for the barplot
-      mainPanel(
-        plotOutput("phonePlot")  
-      )
-      
-    )
+shinyUI(pageWithSidebar(
+  headerPanel('Iris k-means clustering'),
+  sidebarPanel(
+    selectInput('xcol', 'X Variable', names(iris)),
+    selectInput('ycol', 'Y Variable', names(iris),
+                selected=names(iris)[[2]]),
+    numericInput('clusters', 'Cluster count', 3,
+                 min = 1, max = 9)
+  ),
+  mainPanel(
+    plotOutput('plot1')
   )
-)
+))
