@@ -28,9 +28,6 @@ function package_download() {
 
   mkdir -p $location
   curl $url --location -s -o - | tar xzf - -C $location
-  ####
-  ls -al $location/../
-  ####
 }
 
 function read_var() {
@@ -82,8 +79,8 @@ REPOSITORY_ROOT="download.pivotal.io.s3.amazonaws.com"
 JDK_VERSION="1.8.0_65"
 JDK="openjdk-${JDK_VERSION}"
 #JDK="jdk${JDK_VERSION}"
-PLATFORM="trusty"
-#PLATFORM="lucid"
+#PLATFORM="trusty"
+PLATFORM="lucid"
 ARCH="x86_64"
 JDK_URL="http://${REPOSITORY_ROOT}/openjdk/${PLATFORM}/${ARCH}/${JDK}.tar.gz"
 #JDK_URL="https://s3-us-west-2.amazonaws.com/java-r-buildpack/jdk-7u51-linux-i586.tar.gz"
