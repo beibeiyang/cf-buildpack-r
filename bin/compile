@@ -26,14 +26,12 @@ function read_var() {
   echo $(head -n 1 $1)
 }
 
+function package_download() {
+  url="$1"
+  location="$2"
 
-function download() {
-  if [ ! -f "$2" ]; then
-    echo Downloading $2...
-    curl $1 -o $2 -s -S
-  else
-    echo Got $2...
-  fi
+  mkdir -p $location
+  curl $url --location -s -o - | tar xzf - -C $location
 }
 
 # clean up leaking environment
@@ -96,7 +94,7 @@ JAVA_HOME_TEMP="$VENDOR_DIR/$JDK"
 #: ${JAVA_LIBS=~autodetect~}
 
 echo "Downloading and unpacking $JDK into '$VENDOR_DIR/$JDK'" | indent
-download "${JDK_URL}" "${VENDOR_DIR}/$JDK"
+package_download "${JDK_URL}" "${VENDOR_DIR}/$JDK"
 #wget "${JDK_URL}" --no-check-certificate
 #mkdir -p $JAVA_HOME_TEMP
 #mv jdk-7u51-linux-x64.tar.gz "${JAVA_HOME_TEMP}"
