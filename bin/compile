@@ -149,6 +149,12 @@ cp -R $VENDOR_DIR/.apt/* /app/.apt
 mkdir -p /app/vendor/R
 cp -R $VENDOR_DIR/R/* /app/vendor/R
 
+# setup rJava
+echo "Calling R CMD javareconf" | indent
+$JAVA -version
+echo "PATH set to '$PATH'" | indent
+R CMD javareconf
+
 # needed for compiling packages
 export PATH="/app/vendor/R/bin:/app/.apt/usr/bin:/app/bin:/usr/ruby1.9.2/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
 export R_INCLUDE="/app/vendor/R/lib64/R/include"
@@ -188,10 +194,3 @@ echo "R $R_VERSION successfully installed" | indent
 rm -rf $VENDOR_DIR/R
 mkdir -p $VENDOR_DIR/R
 cp -R /app/vendor/R/* $VENDOR_DIR/R
-
-
-# setup rJava
-echo "Calling R CMD javareconf" | indent
-$JAVA -version
-echo "PATH set to '$PATH'" | indent
-R CMD javareconf
