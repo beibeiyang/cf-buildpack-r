@@ -1,3 +1,7 @@
+# Cloud Foundry R Buildpack
+
+Forked from [Heroku R buildpack](https://github.com/virtualstaticvoid/heroku-buildpack-r) to support Cloud Foundry. Tested with Shiny.
+
 # Heroku buildpack: R
 
 This is a [Heroku buildpack](http://devcenter.heroku.com/articles/buildpacks) for applications which use
