@@ -22,17 +22,16 @@ function indent() {
   esac
 }
 
-function read_var() {
-  echo $(head -n 1 $1)
+function package_download() {
+  url="$1"
+  location="$2"
+
+  mkdir -p $location
+  curl $url --location -s -o - | tar xzf - -C $location
 }
 
-function download() {
-  if [ ! -f "$2" ]; then
-    echo Downloading $2...
-    curl $1 -o $2 -s -S
-  else
-    echo Got $2...
-  fi
+function read_var() {
+  echo $(head -n 1 $1)
 }
 
 # clean up leaking environment
@@ -56,21 +55,74 @@ fi
 if [[ -f $BUILD_DIR/.r-version ]]; then
   R_VERSION=`read_var $BUILD_DIR/.r-version`
 else
-  R_VERSION="3.2.2"
+  R_VERSION="3.2.3"
 fi
 
 # read in buildback binary version if file exists
 if [[ -f $BUILD_DIR/.r-buildpack-version ]]; then
   BUILD_PACK_VERSION=`read_var $BUILD_DIR/.r-buildpack-version`
 else
-  BUILD_PACK_VERSION="20151031-1711"
+  BUILD_PACK_VERSION="20151214-2343"
 fi
 
 S3_BUCKET="heroku-buildpack-r"
 R_BINARIES="http://${S3_BUCKET}.s3.amazonaws.com/${STACK}/R-${R_VERSION}-binaries-${BUILD_PACK_VERSION}.tar.gz"
 
 VENDOR_DIR="$BUILD_DIR/vendor"
-CRAN_MIRROR="http://cran.revolutionanalytics.com"
+#CRAN_MIRROR="http://cran.revolutionanalytics.com"
+CRAN_MIRROR="http://cran.rstudio.com"
+
+
+#####################
+
+REPOSITORY_ROOT="download.pivotal.io.s3.amazonaws.com"
+JDK_VERSION="1.8.0_60"
+#JDK_VERSION="1.8.0_65"
+JDK="openjdk-${JDK_VERSION}"
+#JDK="jdk${JDK_VERSION}"
+#PLATFORM="trusty"
+PLATFORM="lucid"
+ARCH="x86_64"
+JDK_URL="http://${REPOSITORY_ROOT}/openjdk/${PLATFORM}/${ARCH}/${JDK}.tar.gz"
+#JDK_URL="https://s3-us-west-2.amazonaws.com/java-r-buildpack/jdk-7u51-linux-i586.tar.gz"
+echo "JDK_URL: $JDK_URL" | indent
+JAVA_HOME_TEMP="$VENDOR_DIR/$JDK"
+#: ${JAVA_HOME=}
+#: ${JAVA_CPPFLAGS=~autodetect~}
+#: ${JAVA_LD_LIBRARY_PATH=~autodetect~}
+#: ${JAVA_LIBS=~autodetect~}
+
+echo "Downloading and unpacking $JDK into '$VENDOR_DIR/$JDK'" | indent
+package_download "${JDK_URL}" "${VENDOR_DIR}/$JDK"
+#wget "${JDK_URL}" --no-check-certificate
+#mkdir -p $JAVA_HOME_TEMP
+#mv jdk-7u51-linux-x64.tar.gz "${JAVA_HOME_TEMP}"
+#tar xzf "${JAVA_HOME_TEMP}/jdk-7u51-linux-x64.tar.gz"
+#rm "${JAVA_HOME_TEMP}/jdk-7u51-linux-x64.tar.gz"
+
+echo "JAVA_HOME_TEMP: $JAVA_HOME_TEMP" | indent
+export JAVA_HOME="/app/vendor/${JDK}"
+#export JAVA_HOME=$JAVA_HOME_TEMP
+echo "JAVA_HOME: $JAVA_HOME" | indent
+export JAVA_CPPFLAGS="-I$JAVA_HOME/include -I$JAVA_HOME/include/linux"
+echo "JAVA_CPPFLAGS: $JAVA_CPPFLAGS" | indent
+
+
+export PATH="$JAVA_HOME/bin:$PATH" 
+
+mkdir -p $JAVA_HOME
+echo "Copying vendored ${JAVA_HOME_TEMP} files into ${JAVA_HOME}" | indent
+cp -R $JAVA_HOME_TEMP/* $JAVA_HOME/
+
+#ls -al /usr/bin
+
+#if [ -f "/usr/bin/java" ]; then
+#     echo "Java found on path" | indent
+#else
+#    ln -fs $JAVA_HOME/bin/java /usr/bin/java
+#fi
+
+#####################
 
 mkdir -p $CACHE_DIR
 
