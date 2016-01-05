@@ -76,6 +76,8 @@ CRAN_MIRROR="http://cran.revolutionanalytics.com"
 
 #####################
 
+# Add support for rJava package
+
 REPOSITORY_ROOT="download.pivotal.io.s3.amazonaws.com"
 JDK_VERSION="1.8.0_60"
 #JDK_VERSION="1.8.0_65"
@@ -115,8 +117,9 @@ mkdir -p $JAVA_HOME
 echo "Copying vendored ${JAVA_HOME_TEMP} files into ${JAVA_HOME}" | indent
 cp -R $JAVA_HOME_TEMP/* $JAVA_HOME/
 
-echo "What's in $JAVA_HOME/bin ..."
-ls -al $JAVA_HOME/bin
+
+export JAVA="$JAVA_HOME/bin/java"
+echo "JAVA: $JAVA_HOME/bin/java" | indent
 
 #ls -al /usr/bin
 
