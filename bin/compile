@@ -119,7 +119,7 @@ cp -R $JAVA_HOME_TEMP/* $JAVA_HOME/
 
 
 export JAVA="$JAVA_HOME/bin/java"
-echo "JAVA: $JAVA_HOME/bin/java" | indent
+echo "JAVA: $JAVA" | indent
 
 #ls -al /usr/bin
 
@@ -190,5 +190,8 @@ mkdir -p $VENDOR_DIR/R
 cp -R /app/vendor/R/* $VENDOR_DIR/R
 
 
-# java reconfig for r
+# setup rJava
+echo "Calling R CMD javareconf" | indent
+$JAVA -version
+echo "PATH set to '$PATH'" | indent
 R CMD javareconf
