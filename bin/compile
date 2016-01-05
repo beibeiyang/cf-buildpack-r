@@ -115,8 +115,8 @@ mkdir -p $JAVA_HOME
 echo "Copying vendored ${JAVA_HOME_TEMP} files into ${JAVA_HOME}" | indent
 cp -R $JAVA_HOME_TEMP/* $JAVA_HOME/
 
-echo "What's in $JAVA_HOME ..."
-ls -al $JAVA_HOME
+echo "What's in $JAVA_HOME/bin ..."
+ls -al $JAVA_HOME/bin
 
 #ls -al /usr/bin
 
