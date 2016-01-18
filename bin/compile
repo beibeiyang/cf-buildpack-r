@@ -91,11 +91,6 @@ cp -R $VENDOR_DIR/.apt/* /app/.apt
 mkdir -p /app/vendor/R
 cp -R $VENDOR_DIR/R/* /app/vendor/R
 
-# setup rJava
-echo "Calling R CMD javareconf" | indent
-$JAVA -version
-echo "PATH set to '$PATH'" | indent
-/app/vendor/R/bin/R CMD javareconf
 
 # needed for compiling packages
 export PATH="/app/vendor/R/bin:/app/.apt/usr/bin:/app/bin:/usr/ruby1.9.2/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
