@@ -1,4 +1,4 @@
 #!/bin/bash
 
-cf push --no-route
+cf push
 
