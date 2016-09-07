@@ -4,7 +4,6 @@ applications:
   memory: 128M
   instances: 1
   buildpack: https://github.com/beibeiyang/cf-buildpack-r.git
-  host: rshinyapp
-  domain: cfapps.io
-  path: .
+  env:
+    CRAN_MIRROR: http://cran.rstudio.com
 

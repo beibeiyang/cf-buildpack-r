@@ -72,12 +72,10 @@ R_BINARIES="http://${S3_BUCKET}.s3.amazonaws.com/${STACK}/R-${R_VERSION}-binarie
 
 VENDOR_DIR="$BUILD_DIR/vendor"
 
-#CRAN_MIRROR="http://cran.revolutionanalytics.com"
-
 # define CRAN mirror if unset
 if [ -z "${CRAN_MIRROR}" ];
 then
-  CRAN_MIRROR="http://cran.rstudio.com"
+  CRAN_MIRROR="http://cloud.r-project.org"
 fi
 
 mkdir -p $CACHE_DIR
