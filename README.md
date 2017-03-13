@@ -8,7 +8,7 @@ Forked from [Heroku R buildpack](https://github.com/virtualstaticvoid/heroku-bui
 
 Live demo (adapted from this [Shiny example](http://shiny.rstudio.com/gallery/kmeans-example.html)): [https://rshinyapp.cfapps.io:4443](https://rshinyapp.cfapps.io:4443)
 
-Recorded demo: [[Youtube] Deploy Cloud Foundry App with Customized R Buildpack](https://youtu.be/zDdU8_B2t8Y)
+Recorded demo: [[Youtube] Deploy a Cloud Foundry App with Customized R Buildpack](https://youtu.be/zDdU8_B2t8Y)
 
 ## Caveat
 JDK / rJava is not supported. Cloud Foundry prefers JRE over JDK.
