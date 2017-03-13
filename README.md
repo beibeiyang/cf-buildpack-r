@@ -10,4 +10,5 @@ Live demo (adapted from this [Shiny example](http://shiny.rstudio.com/gallery/km
 
 Recorded demo: [[Youtube] Deploy Cloud Foundry App with Customized R Buildpack](https://youtu.be/zDdU8_B2t8Y)
 
-Caveat: JDK / rJava is not supported. Cloud Foundry prefers JRE over JDK.
+## Caveat
+JDK / rJava is not supported. Cloud Foundry prefers JRE over JDK.
